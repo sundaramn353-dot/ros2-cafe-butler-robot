@@ -389,17 +389,17 @@ The following test scenarios verify the robust state machine logic under differe
 > [!TIP]
 > Keep your local screenshots saved in the `media/` folder and update this section with paths like `media/simulation_screenshot.png` to keep your workspace clean.
 
----
+## 🎥 Demo Videos
 
-## 🎥 Demo Video
+For a walkthrough of the FSM and Nav2 executing the test cases, watch the demo videos below:
 
-For a complete walkthrough of the FSM and Nav2 executing the test cases, watch the demo video:
+### 📹 Part 1: Full Navigation & Delivery Operations
+<video src="media/demo_video1.webm" controls width="100%"></video>
 
-![Café Butler Robot Simulation Video](media/demo_video.gif)
+### 📹 Part 2: FSM Cancellations & Timeout Behaviors
+<video src="media/demo_video2.webm" controls width="100%"></video>
 
-*To create your own video recordings, run `record_simulation.sh` or capture using Gazebo Harmonic's built-in recorder.*
-
----
+*Recorded in Gazebo Harmonic simulation.*
 
 ## 🚀 Future Improvements
 
