@@ -381,23 +381,23 @@ The following test scenarios verify the robust state machine logic under differe
 *Note: In the simulation repository, you can review the generated mapping and world screenshots below:*
 
 ````carousel
-![Simulation World Overview](media/simulation_world.png)
+![Simulation World Overview](media/simulation_screenshot.png)
 <!-- slide -->
-![Autonomous Navigation path in RViz2](media/rviz_navigation.png)
+![Autonomous Navigation path in RViz2](media/simulation_screenshot.png)
 ````
 
 > [!TIP]
-> Keep your local screenshots saved in the `media/` folder and update this section with paths like `media/simulation_screenshot.png` to keep your workspace clean.
+> Keep your local screenshots saved in the `media/` folder and update this section to keep your workspace clean.
 
 ## 🎥 Demo Videos
 
 For a walkthrough of the FSM and Nav2 executing the test cases, watch the demo videos below:
 
 ### 📹 Part 1: Full Navigation & Delivery Operations
-<video src="media/demo_video1.webm" controls width="100%"></video>
+<video src="https://raw.githubusercontent.com/sundaramn353-dot/ros2-cafe-butler-robot/main/media/demo_video1.webm" controls width="100%"></video>
 
 ### 📹 Part 2: FSM Cancellations & Timeout Behaviors
-<video src="media/demo_video2.webm" controls width="100%"></video>
+<video src="https://raw.githubusercontent.com/sundaramn353-dot/ros2-cafe-butler-robot/main/media/demo_video2.webm" controls width="100%"></video>
 
 *Recorded in Gazebo Harmonic simulation.*
 
