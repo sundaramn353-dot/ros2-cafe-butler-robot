@@ -374,29 +374,21 @@ The following test scenarios verify the robust state machine logic under differe
    - Arrives at `table3`. Confirm: `confirm table3`
    - Since one order (`table2`) was cancelled, there is leftover food. The robot transitions to `RETURN_KITCHEN` to drop off the food, then returns `home`.
 
----
+## Screenshots and Demo Videos
 
-## Screenshots
+Below are the simulation screenshot and recorded walkthrough videos showing the robot's navigation, state machine transitions, and cancellation behaviors in the Gazebo environment.
 
-Below is the screenshot showing the robot simulation and mapping inside the Gazebo environment:
-
+### Simulation Screenshot
 ![Simulation Screenshot](media/simulation_screenshot.png)
 
----
+### Walkthrough Videos
+- **Part 1: Full Navigation and Delivery Operations**
+  <video src="media/demo_video1.webm" controls width="100%"></video>
+  *Direct Link: [Download/Watch Part 1 Video](media/demo_video1.webm)*
 
-## Demo Videos
-
-For a walkthrough of the FSM and Nav2 executing the test cases, watch the demo videos below:
-
-### Part 1: Full Navigation and Delivery Operations
-<video src="media/demo_video1.webm" controls width="100%"></video>
-
-If the player above is empty, you can [Download and Watch Part 1 Video directly](media/demo_video1.webm).
-
-### Part 2: FSM Cancellations and Timeout Behaviors
-<video src="media/demo_video2.webm" controls width="100%"></video>
-
-If the player above is empty, you can [Download and Watch Part 2 Video directly](media/demo_video2.webm).
+- **Part 2: FSM Cancellations and Timeout Behaviors**
+  <video src="media/demo_video2.webm" controls width="100%"></video>
+  *Direct Link: [Download/Watch Part 2 Video](media/demo_video2.webm)*
 
 *Recorded in Gazebo Harmonic simulation.*
 
