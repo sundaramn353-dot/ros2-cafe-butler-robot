@@ -407,3 +407,4 @@ For a complete walkthrough of the FSM and Nav2 executing the test cases, watch t
 2. 📱 **Web Dashboard interface**: Replace the interactive terminal CLI with a web application dashboard (e.g. built on ROS2 Web Bridge) for waitstaff to easily assign table orders.
 3. 🔋 **Automatic Docking & Charging**: Add battery monitoring topics and a dock action server, transitioning the FSM to a charging state when the battery is low.
 4. 🍽️ **Physical Butler Platform**: Port the simulation stack to a physical differential butler platform with food carrier trays.
+# ros2-cafe-butler-robot
