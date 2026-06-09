@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>cafe_robot</name>
+  <version>0.1.0</version>
+  <description>Autonomous French café butler robot — ROS 2 Jazzy package with Nav2 navigation and Gazebo Harmonic simulation support.</description>
+  <maintainer email="sundar@todo.todo">sundar</maintainer>
+  <license>Apache-2.0</license>
+
+  <!-- Build type -->
+  <buildtool_depend>ament_python</buildtool_depend>
+
+  <!-- Core ROS 2 dependencies -->
+  <depend>rclpy</depend>
+  <depend>std_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>sensor_msgs</depend>
+  <depend>nav_msgs</depend>
+  <depend>tf2_ros</depend>
+  <depend>tf2_geometry_msgs</depend>
+
+  <!-- Navigation (Nav2) -->
+  <depend>nav2_bringup</depend>
+  <depend>nav2_msgs</depend>
+  <depend>nav2_common</depend>
+  <depend>navigation2</depend>
+
+  <!-- Simulation -->
+  <depend>ros_gz_sim</depend>
+  <depend>ros_gz_bridge</depend>
+  <depend>ros_gz_image</depend>
+
+  <!-- Robot description -->
+  <depend>robot_state_publisher</depend>
+  <depend>joint_state_publisher</depend>
+  <depend>xacro</depend>
+  <depend>urdf</depend>
+
+  <!-- SLAM / Mapping -->
+  <depend>slam_toolbox</depend>
+  <depend>cartographer_ros</depend>
+
+  <!-- TurtleBot3 -->
+  <depend>nav2_minimal_tb3_sim</depend>
+  <depend>turtlebot3_description</depend>
+
+  <!-- Visualization -->
+  <depend>rviz2</depend>
+
+  <!-- Launch -->
+  <exec_depend>ros2launch</exec_depend>
+
+  <!-- Testing -->
+  <test_depend>ament_copyright</test_depend>
+  <test_depend>ament_flake8</test_depend>
+  <test_depend>ament_pep257</test_depend>
+  <test_depend>python3-pytest</test_depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>

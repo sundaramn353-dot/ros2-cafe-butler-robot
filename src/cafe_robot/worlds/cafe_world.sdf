@@ -1,0 +1,364 @@
+<?xml version="1.0" ?>
+<sdf version="1.9">
+  <world name="cafe_world">
+
+    <!-- Physics -->
+    <physics name="1ms" type="ignored">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+    </physics>
+
+    <!-- Plugins -->
+    <plugin filename="gz-sim-physics-system" name="gz::sim::systems::Physics"/>
+    <plugin filename="gz-sim-user-commands-system" name="gz::sim::systems::UserCommands"/>
+    <plugin filename="gz-sim-scene-broadcaster-system" name="gz::sim::systems::SceneBroadcaster"/>
+    <plugin filename="gz-sim-sensors-system" name="gz::sim::systems::Sensors">
+      <render_engine>ogre2</render_engine>
+    </plugin>
+    <plugin filename="gz-sim-contact-system" name="gz::sim::systems::Contact"/>
+
+    <!-- Warm café lighting -->
+    <light type="directional" name="sun">
+      <cast_shadows>true</cast_shadows>
+      <pose>0 0 10 0 0 0</pose>
+      <diffuse>0.95 0.9 0.8 1</diffuse>
+      <specular>0.3 0.3 0.3 1</specular>
+      <attenuation>
+        <range>1000</range>
+        <constant>0.9</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <direction>-0.5 0.1 -0.9</direction>
+    </light>
+
+    <!-- Ground plane (tiled café floor) -->
+    <model name="ground_plane">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry><plane><normal>0 0 1</normal><size>100 100</size></plane></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><plane><normal>0 0 1</normal><size>100 100</size></plane></geometry>
+          <material>
+            <ambient>0.55 0.5 0.4 1</ambient>
+            <diffuse>0.65 0.6 0.5 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         WALLS — 10m × 8m café room
+         Origin at center. X: -5 to +5, Y: -4 to +4
+         ═══════════════════════════════════════════════════════════ -->
+
+    <!-- North wall (full width) -->
+    <model name="wall_north">
+      <static>true</static>
+      <pose>0 4 1.25 0 0 0</pose>
+      <link name="link">
+        <collision name="c"><geometry><box><size>10.3 0.15 2.5</size></box></geometry></collision>
+        <visual name="v"><geometry><box><size>10.3 0.15 2.5</size></box></geometry>
+          <material><ambient>0.82 0.76 0.66 1</ambient><diffuse>0.88 0.82 0.72 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- South wall (full width) -->
+    <model name="wall_south">
+      <static>true</static>
+      <pose>0 -4 1.25 0 0 0</pose>
+      <link name="link">
+        <collision name="c"><geometry><box><size>10.3 0.15 2.5</size></box></geometry></collision>
+        <visual name="v"><geometry><box><size>10.3 0.15 2.5</size></box></geometry>
+          <material><ambient>0.82 0.76 0.66 1</ambient><diffuse>0.88 0.82 0.72 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- East wall -->
+    <model name="wall_east">
+      <static>true</static>
+      <pose>5 0 1.25 0 0 0</pose>
+      <link name="link">
+        <collision name="c"><geometry><box><size>0.15 8 2.5</size></box></geometry></collision>
+        <visual name="v"><geometry><box><size>0.15 8 2.5</size></box></geometry>
+          <material><ambient>0.82 0.76 0.66 1</ambient><diffuse>0.88 0.82 0.72 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- West wall -->
+    <model name="wall_west">
+      <static>true</static>
+      <pose>-5 0 1.25 0 0 0</pose>
+      <link name="link">
+        <collision name="c"><geometry><box><size>0.15 8 2.5</size></box></geometry></collision>
+        <visual name="v"><geometry><box><size>0.15 8 2.5</size></box></geometry>
+          <material><ambient>0.82 0.76 0.66 1</ambient><diffuse>0.88 0.82 0.72 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         KITCHEN AREA — top-left corner (-5 to -1.5, +1.5 to +4)
+         Enclosed by counter walls on south and east sides
+         ═══════════════════════════════════════════════════════════ -->
+
+    <!-- Kitchen south counter wall -->
+    <model name="kitchen_wall_south">
+      <static>true</static>
+      <pose>-3.25 1.5 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="c"><geometry><box><size>3.5 0.15 1.0</size></box></geometry></collision>
+        <visual name="v"><geometry><box><size>3.5 0.15 1.0</size></box></geometry>
+          <material><ambient>0.35 0.25 0.15 1</ambient><diffuse>0.45 0.32 0.2 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Kitchen east counter wall (with gap at bottom for passage) -->
+    <model name="kitchen_wall_east">
+      <static>true</static>
+      <pose>-1.5 3.25 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="c"><geometry><box><size>0.15 1.5 1.0</size></box></geometry></collision>
+        <visual name="v"><geometry><box><size>0.15 1.5 1.0</size></box></geometry>
+          <material><ambient>0.35 0.25 0.15 1</ambient><diffuse>0.45 0.32 0.2 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Kitchen countertop (work surface) -->
+    <model name="kitchen_counter">
+      <static>true</static>
+      <pose>-4.2 2.75 0.45 0 0 0</pose>
+      <link name="link">
+        <collision name="c"><geometry><box><size>1.4 0.6 0.9</size></box></geometry></collision>
+        <visual name="v"><geometry><box><size>1.4 0.6 0.9</size></box></geometry>
+          <material><ambient>0.6 0.6 0.6 1</ambient><diffuse>0.75 0.75 0.75 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Kitchen label marker (small box on floor) -->
+    <model name="kitchen_marker">
+      <static>true</static>
+      <pose>-3.5 3.0 0.01 0 0 0</pose>
+      <link name="link">
+        <visual name="v"><geometry><box><size>0.8 0.8 0.02</size></box></geometry>
+          <material><ambient>0.2 0.5 0.2 1</ambient><diffuse>0.3 0.6 0.3 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         HOME POSITION — left side (-4, -1) — robot start/return
+         Marked with a colored floor square
+         ═══════════════════════════════════════════════════════════ -->
+
+    <model name="home_marker">
+      <static>true</static>
+      <pose>-3.5 -1.0 0.01 0 0 0</pose>
+      <link name="link">
+        <visual name="v"><geometry><box><size>0.8 0.8 0.02</size></box></geometry>
+          <material><ambient>0.2 0.3 0.7 1</ambient><diffuse>0.3 0.4 0.8 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         TABLES — right side of café, each with a tabletop + leg
+         Table 1: (2.5, 2.5)   — near north wall
+         Table 2: (2.5, 0.0)   — center
+         Table 3: (2.5, -2.5)  — near south wall
+         ═══════════════════════════════════════════════════════════ -->
+
+    <!-- TABLE 1 -->
+    <model name="table1_top">
+      <static>true</static>
+      <pose>2.5 2.5 0.74 0 0 0</pose>
+      <link name="link">
+        <collision name="c"><geometry><box><size>0.8 0.8 0.04</size></box></geometry></collision>
+        <visual name="v"><geometry><box><size>0.8 0.8 0.04</size></box></geometry>
+          <material><ambient>0.5 0.33 0.18 1</ambient><diffuse>0.6 0.4 0.22 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+    <model name="table1_leg">
+      <static>true</static>
+      <pose>2.5 2.5 0.36 0 0 0</pose>
+      <link name="link">
+        <collision name="c"><geometry><cylinder><radius>0.05</radius><length>0.72</length></cylinder></geometry></collision>
+        <visual name="v"><geometry><cylinder><radius>0.05</radius><length>0.72</length></cylinder></geometry>
+          <material><ambient>0.3 0.3 0.3 1</ambient><diffuse>0.4 0.4 0.4 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Table 1 chairs (2 chairs) -->
+    <model name="table1_chair_a">
+      <static>true</static>
+      <pose>1.8 2.5 0.22 0 0 0</pose>
+      <link name="link">
+        <collision name="c"><geometry><box><size>0.4 0.4 0.44</size></box></geometry></collision>
+        <visual name="v"><geometry><box><size>0.4 0.4 0.44</size></box></geometry>
+          <material><ambient>0.55 0.35 0.2 1</ambient><diffuse>0.65 0.42 0.25 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+    <model name="table1_chair_b">
+      <static>true</static>
+      <pose>3.2 2.5 0.22 0 0 0</pose>
+      <link name="link">
+        <collision name="c"><geometry><box><size>0.4 0.4 0.44</size></box></geometry></collision>
+        <visual name="v"><geometry><box><size>0.4 0.4 0.44</size></box></geometry>
+          <material><ambient>0.55 0.35 0.2 1</ambient><diffuse>0.65 0.42 0.25 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- TABLE 2 -->
+    <model name="table2_top">
+      <static>true</static>
+      <pose>2.5 0.0 0.74 0 0 0</pose>
+      <link name="link">
+        <collision name="c"><geometry><box><size>0.8 0.8 0.04</size></box></geometry></collision>
+        <visual name="v"><geometry><box><size>0.8 0.8 0.04</size></box></geometry>
+          <material><ambient>0.5 0.33 0.18 1</ambient><diffuse>0.6 0.4 0.22 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+    <model name="table2_leg">
+      <static>true</static>
+      <pose>2.5 0.0 0.36 0 0 0</pose>
+      <link name="link">
+        <collision name="c"><geometry><cylinder><radius>0.05</radius><length>0.72</length></cylinder></geometry></collision>
+        <visual name="v"><geometry><cylinder><radius>0.05</radius><length>0.72</length></cylinder></geometry>
+          <material><ambient>0.3 0.3 0.3 1</ambient><diffuse>0.4 0.4 0.4 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Table 2 chairs -->
+    <model name="table2_chair_a">
+      <static>true</static>
+      <pose>1.8 0.0 0.22 0 0 0</pose>
+      <link name="link">
+        <collision name="c"><geometry><box><size>0.4 0.4 0.44</size></box></geometry></collision>
+        <visual name="v"><geometry><box><size>0.4 0.4 0.44</size></box></geometry>
+          <material><ambient>0.55 0.35 0.2 1</ambient><diffuse>0.65 0.42 0.25 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+    <model name="table2_chair_b">
+      <static>true</static>
+      <pose>3.2 0.0 0.22 0 0 0</pose>
+      <link name="link">
+        <collision name="c"><geometry><box><size>0.4 0.4 0.44</size></box></geometry></collision>
+        <visual name="v"><geometry><box><size>0.4 0.4 0.44</size></box></geometry>
+          <material><ambient>0.55 0.35 0.2 1</ambient><diffuse>0.65 0.42 0.25 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- TABLE 3 -->
+    <model name="table3_top">
+      <static>true</static>
+      <pose>2.5 -2.5 0.74 0 0 0</pose>
+      <link name="link">
+        <collision name="c"><geometry><box><size>0.8 0.8 0.04</size></box></geometry></collision>
+        <visual name="v"><geometry><box><size>0.8 0.8 0.04</size></box></geometry>
+          <material><ambient>0.5 0.33 0.18 1</ambient><diffuse>0.6 0.4 0.22 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+    <model name="table3_leg">
+      <static>true</static>
+      <pose>2.5 -2.5 0.36 0 0 0</pose>
+      <link name="link">
+        <collision name="c"><geometry><cylinder><radius>0.05</radius><length>0.72</length></cylinder></geometry></collision>
+        <visual name="v"><geometry><cylinder><radius>0.05</radius><length>0.72</length></cylinder></geometry>
+          <material><ambient>0.3 0.3 0.3 1</ambient><diffuse>0.4 0.4 0.4 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Table 3 chairs -->
+    <model name="table3_chair_a">
+      <static>true</static>
+      <pose>1.8 -2.5 0.22 0 0 0</pose>
+      <link name="link">
+        <collision name="c"><geometry><box><size>0.4 0.4 0.44</size></box></geometry></collision>
+        <visual name="v"><geometry><box><size>0.4 0.4 0.44</size></box></geometry>
+          <material><ambient>0.55 0.35 0.2 1</ambient><diffuse>0.65 0.42 0.25 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+    <model name="table3_chair_b">
+      <static>true</static>
+      <pose>3.2 -2.5 0.22 0 0 0</pose>
+      <link name="link">
+        <collision name="c"><geometry><box><size>0.4 0.4 0.44</size></box></geometry></collision>
+        <visual name="v"><geometry><box><size>0.4 0.4 0.44</size></box></geometry>
+          <material><ambient>0.55 0.35 0.2 1</ambient><diffuse>0.65 0.42 0.25 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         OBSTACLES — scattered objects the robot must avoid
+         ═══════════════════════════════════════════════════════════ -->
+
+    <!-- Shelf / bookcase — left side corridor -->
+    <model name="obstacle_shelf">
+      <static>true</static>
+      <pose>-3.5 -3.0 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="c"><geometry><box><size>0.8 0.4 1.0</size></box></geometry></collision>
+        <visual name="v"><geometry><box><size>0.8 0.4 1.0</size></box></geometry>
+          <material><ambient>0.4 0.28 0.15 1</ambient><diffuse>0.5 0.35 0.2 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Planter pot — center corridor -->
+    <model name="obstacle_planter">
+      <static>true</static>
+      <pose>0.0 -2.0 0.25 0 0 0</pose>
+      <link name="link">
+        <collision name="c"><geometry><cylinder><radius>0.25</radius><length>0.5</length></cylinder></geometry></collision>
+        <visual name="v"><geometry><cylinder><radius>0.25</radius><length>0.5</length></cylinder></geometry>
+          <material><ambient>0.6 0.35 0.2 1</ambient><diffuse>0.7 0.42 0.25 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Trash bin — near kitchen entrance -->
+    <model name="obstacle_bin">
+      <static>true</static>
+      <pose>-1.0 0.8 0.2 0 0 0</pose>
+      <link name="link">
+        <collision name="c"><geometry><cylinder><radius>0.18</radius><length>0.4</length></cylinder></geometry></collision>
+        <visual name="v"><geometry><cylinder><radius>0.18</radius><length>0.4</length></cylinder></geometry>
+          <material><ambient>0.35 0.35 0.35 1</ambient><diffuse>0.45 0.45 0.45 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Display stand — center area -->
+    <model name="obstacle_stand">
+      <static>true</static>
+      <pose>0.5 1.5 0.4 0 0 0</pose>
+      <link name="link">
+        <collision name="c"><geometry><box><size>0.5 0.5 0.8</size></box></geometry></collision>
+        <visual name="v"><geometry><box><size>0.5 0.5 0.8</size></box></geometry>
+          <material><ambient>0.3 0.3 0.45 1</ambient><diffuse>0.4 0.4 0.55 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+  </world>
+</sdf>
