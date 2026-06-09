@@ -1,6 +1,26 @@
+# ROS 2 Build directories
 build/
 install/
 log/
-*.pyc
+
+# Python cache & compiled files
 __pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+
+# OS metadata
+.DS_Store
+Thumg.db
+
+# IDE configurations
 .vscode/
+.idea/
+*.swp
+*.swo
+
+# Gz simulation temporary files and logs
+.gz/
+.ignition/
+~*

@@ -1,6 +1,6 @@
 # ☕ French Café Butler Robot — ROS 2 Jazzy
 
-![French Café Butler Robot Banner](file:///home/sundar/.gemini/antigravity/brain/7767e940-f566-4a9a-9de4-c9f79ff5b5ae/cafe_robot_banner_1780995764265.png)
+![French Café Butler Robot Banner](media/cafe_robot_banner.png)
 
 An advanced autonomous service robot simulation developed on **ROS 2 Jazzy Jalisco** and **Gazebo Harmonic (GZ Sim)**. The robot serves as a restaurant butler in a French café environment, utilizing the **Nav2** navigation stack and a custom **Finite State Machine (FSM)**. It supports dynamic order queueing, interactive operator control via a CLI terminal, safety-critical cancellations, and automated order confirmations.
 
@@ -381,9 +381,9 @@ The following test scenarios verify the robust state machine logic under differe
 *Note: In the simulation repository, you can review the generated mapping and world screenshots below:*
 
 ````carousel
-![Simulation World Overview](file:///home/sundar/.gemini/antigravity/brain/7767e940-f566-4a9a-9de4-c9f79ff5b5ae/cafe_robot_banner_1780995764265.png)
+![Simulation World Overview](media/simulation_world.png)
 <!-- slide -->
-![Autonomous Navigation path in RViz2](file:///home/sundar/.gemini/antigravity/brain/7767e940-f566-4a9a-9de4-c9f79ff5b5ae/cafe_robot_banner_1780995764265.png)
+![Autonomous Navigation path in RViz2](media/rviz_navigation.png)
 ````
 
 > [!TIP]
@@ -395,7 +395,7 @@ The following test scenarios verify the robust state machine logic under differe
 
 For a complete walkthrough of the FSM and Nav2 executing the test cases, watch the demo video:
 
-![Café Butler Robot Simulation Video](file:///home/sundar/.gemini/antigravity/brain/7767e940-f566-4a9a-9de4-c9f79ff5b5ae/cafe_robot_banner_1780995764265.png)
+![Café Butler Robot Simulation Video](media/demo_video.gif)
 
 *To create your own video recordings, run `record_simulation.sh` or capture using Gazebo Harmonic's built-in recorder.*
 
