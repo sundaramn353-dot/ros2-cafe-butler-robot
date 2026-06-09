@@ -1,4 +1,4 @@
-# ☕ French Café Butler Robot — ROS 2 Jazzy
+# French Café Butler Robot — ROS 2 Jazzy
 
 ![French Café Butler Robot Banner](media/cafe_robot_banner.png)
 
@@ -6,7 +6,7 @@ An advanced autonomous service robot simulation developed on **ROS 2 Jazzy Jalis
 
 ---
 
-## 📖 Project Overview
+## Project Overview
 
 The **French Café Butler Robot** (`cafe_robot`) is designed to automate table service in a Parisian-themed cafe simulation. The workspace consists of a custom-designed Gazebo world containing a kitchen area, multiple dining tables, and various static obstacles. 
 
@@ -14,21 +14,21 @@ Using a **TurtleBot3 Waffle** differential-drive platform equipped with a 2D LiD
 
 ---
 
-## ✨ Features
+## Features
 
-- 🗺️ **High-Fidelity Gazebo Simulation**: Chic Parisian-themed cafe environment built as an SDF world ([cafe_world.sdf](file:///home/sundar/french_cafe/src/cafe_robot/worlds/cafe_world.sdf)) featuring tables, chairs, planters, and counter walls.
-- 🗺️ **PGM Occupancy Grid Map**: A resolution-matched occupancy map ([cafe_map.pgm](file:///home/sundar/french_cafe/src/cafe_robot/maps/cafe_map.pgm)) generated directly from the Gazebo world using a custom script ([generate_cafe_map.py](file:///home/sundar/french_cafe/src/cafe_robot/scripts/generate_cafe_map.py)).
-- ⚡ **Autonomous Path Planning & Control**: Complete integration with **Nav2** (Action-based NavigateToPose), handling global path planning (NavFn) and local obstacle avoidance (DWB Controller).
-- 🔄 **Robust Finite State Machine (FSM)**: A comprehensive FSM implemented in [cafe_robot_node.py](file:///home/sundar/french_cafe/src/cafe_robot/cafe_robot/cafe_robot_node.py) with structured transitions, recovery behaviors, and order queueing.
-- 💬 **Interactive Operator CLI**: Command-line interface node ([cafe_operator_node.py](file:///home/sundar/french_cafe/src/cafe_robot/cafe_robot/cafe_operator_node.py)) to submit single or multi-table orders, cancel runs, and publish kitchen/table confirmations in real time.
-- ⚙️ **Dual Confirmation Modes**: 
+- **High-Fidelity Gazebo Simulation**: Chic Parisian-themed cafe environment built as an SDF world ([cafe_world.sdf](file:///home/sundar/french_cafe/src/cafe_robot/worlds/cafe_world.sdf)) featuring tables, chairs, planters, and counter walls.
+- **PGM Occupancy Grid Map**: A resolution-matched occupancy map ([cafe_map.pgm](file:///home/sundar/french_cafe/src/cafe_robot/maps/cafe_map.pgm)) generated directly from the Gazebo world using a custom script ([generate_cafe_map.py](file:///home/sundar/french_cafe/src/cafe_robot/scripts/generate_cafe_map.py)).
+- **Autonomous Path Planning & Control**: Complete integration with **Nav2** (Action-based NavigateToPose), handling global path planning (NavFn) and local obstacle avoidance (DWB Controller).
+- **Robust Finite State Machine (FSM)**: A comprehensive FSM implemented in [cafe_robot_node.py](file:///home/sundar/french_cafe/src/cafe_robot/cafe_robot/cafe_robot_node.py) with structured transitions, recovery behaviors, and order queueing.
+- **Interactive Operator CLI**: Command-line interface node ([cafe_operator_node.py](file:///home/sundar/french_cafe/src/cafe_robot/cafe_robot/cafe_operator_node.py)) to submit single or multi-table orders, cancel runs, and publish kitchen/table confirmations in real time.
+- **Dual Confirmation Modes**: 
   - **Manual Confirmation**: Waits for kitchen collection and customer arrival confirmations with configurable timeouts.
   - **No Confirmation (Fully Autonomous)**: Auto-proceeds after a 2-second delay at each target point for simulation visibility.
-- 🛑 **Safety-Critical Cancellation Logic**: Real-time retraction of navigation goals at any stage, ensuring the robot safely returns undelivered food to the kitchen before returning to home.
+- **Safety-Critical Cancellation Logic**: Real-time retraction of navigation goals at any stage, ensuring the robot safely returns undelivered food to the kitchen before returning to home.
 
 ---
 
-## 🏗️ Workspace Architecture
+## Workspace Architecture
 
 ### Directory Structure
 ```text
@@ -95,7 +95,7 @@ graph TD
 
 ---
 
-## 🔄 Finite State Machine (FSM) Explanation
+## Finite State Machine (FSM) Explanation
 
 The robot's operational lifecycle is modeled as a state machine. It is designed to handle both **interactive manual confirmations** and **fully autonomous runs** based on the dynamic parameter `require_confirmation`.
 
@@ -148,7 +148,7 @@ stateDiagram-v2
     RETURN_HOME --> IDLE : Arrived at Home
 ```
 
-### 📋 Detailed State Descriptions
+### Detailed State Descriptions
 
 | State | Description | Transitions |
 | :--- | :--- | :--- |
@@ -163,7 +163,7 @@ stateDiagram-v2
 
 ---
 
-## 📡 ROS Graph Explanation
+## ROS Graph Explanation
 
 The node interface defines the communication API for the `cafe_robot` package. Below is the breakdown of the topics and action interface.
 
@@ -195,7 +195,7 @@ The node interface defines the communication API for the `cafe_robot` package. B
 
 ---
 
-## 🧭 Nav2 Stack Implementation
+## Nav2 Stack Implementation
 
 The **Nav2 (Navigation 2)** stack is configured specifically for the Waffle differential platform in the café world:
 
@@ -209,7 +209,7 @@ The **Nav2 (Navigation 2)** stack is configured specifically for the Waffle diff
 
 ---
 
-## 🛠️ Setup Instructions
+## Setup Instructions
 
 ### Prerequisites
 
@@ -244,7 +244,7 @@ Make sure the package dependency `nav2_minimal_tb3_sim` is available in your wor
 
 ---
 
-## 🚀 Run Instructions
+## Run Instructions
 
 Running the complete simulation suite requires three separate terminal sessions (all sourced with your ROS 2 workspace):
 
@@ -281,7 +281,7 @@ ros2 run cafe_robot cafe_operator_node
 Within the operator terminal, you will see a command prompt:
 ```text
 =================================================================
-☕  FRENCH CAFE ROBOT - DISPATCH & OPERATOR CONTROL TERMINAL
+FRENCH CAFE ROBOT - DISPATCH & OPERATOR CONTROL TERMINAL
 =================================================================
 Supported Commands:
   - order <table_id(s)>  (e.g., 'order table1', 'order table1 table2 table3')
@@ -296,7 +296,7 @@ operator >
 
 ---
 
-## 🧪 Operational Test Cases
+## Operational Test Cases
 
 The following test scenarios verify the robust state machine logic under different edge cases.
 
@@ -376,37 +376,35 @@ The following test scenarios verify the robust state machine logic under differe
 
 ---
 
-## 📷 Screenshots
+## Screenshots
 
-*Note: In the simulation repository, you can review the generated mapping and world screenshots below:*
+Below is the screenshot showing the robot simulation and mapping inside the Gazebo environment:
 
-| Simulation World Overview | Autonomous Navigation Path in RViz2 |
-| :---: | :---: |
-| ![Simulation World Overview](media/simulation_screenshot.png) | ![Autonomous Navigation path in RViz2](media/simulation_screenshot.png) |
+![Simulation Screenshot](media/simulation_screenshot.png)
 
-> [!TIP]
-> Keep your local screenshots saved in the `media/` folder and update this section to keep your workspace clean.
+---
 
-## 🎥 Demo Videos
+## Demo Videos
 
 For a walkthrough of the FSM and Nav2 executing the test cases, watch the demo videos below:
 
-### 📹 Part 1: Full Navigation & Delivery Operations
+### Part 1: Full Navigation and Delivery Operations
 <video src="media/demo_video1.webm" controls width="100%"></video>
 
-📥 *If the player above is empty, you can [Download and Watch Part 1 Video directly](media/demo_video1.webm).*
+If the player above is empty, you can [Download and Watch Part 1 Video directly](media/demo_video1.webm).
 
-### 📹 Part 2: FSM Cancellations & Timeout Behaviors
+### Part 2: FSM Cancellations and Timeout Behaviors
 <video src="media/demo_video2.webm" controls width="100%"></video>
 
-📥 *If the player above is empty, you can [Download and Watch Part 2 Video directly](media/demo_video2.webm).*
+If the player above is empty, you can [Download and Watch Part 2 Video directly](media/demo_video2.webm).
 
 *Recorded in Gazebo Harmonic simulation.*
 
-## 🚀 Future Improvements
+---
 
-1. 👥 **Human-Aware Navigation (Social Nav)**: Integrate social force models or costmap filters to navigate smoothly around walking customers and staff.
-2. 📱 **Web Dashboard interface**: Replace the interactive terminal CLI with a web application dashboard (e.g. built on ROS2 Web Bridge) for waitstaff to easily assign table orders.
-3. 🔋 **Automatic Docking & Charging**: Add battery monitoring topics and a dock action server, transitioning the FSM to a charging state when the battery is low.
-4. 🍽️ **Physical Butler Platform**: Port the simulation stack to a physical differential butler platform with food carrier trays.
-# ros2-cafe-butler-robot
+## Future Improvements
+
+1. **Human-Aware Navigation (Social Nav)**: Integrate social force models or costmap filters to navigate smoothly around walking customers and staff.
+2. **Web Dashboard interface**: Replace the interactive terminal CLI with a web application dashboard (e.g. built on ROS2 Web Bridge) for waitstaff to easily assign table orders.
+3. **Automatic Docking & Charging**: Add battery monitoring topics and a dock action server, transitioning the FSM to a charging state when the battery is low.
+4. **Physical Butler Platform**: Port the simulation stack to a physical differential butler platform with food carrier trays.
